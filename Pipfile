@@ -12,6 +12,7 @@ django-cors-headers = "*"
 pylint-django = "*"
 psycopg2-binary = "*"  # ← Add this line
 requests = "*"
+boto3 = "*"
 
 [dev-packages]
 

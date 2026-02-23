@@ -3,13 +3,14 @@ from django.urls import include, path
 from rest_framework import routers
 from rockapi.views import (
     register_user, login_user,
-    TypeView, RockView
+    TypeView, RockView, RockImageView
 )
 from rockapi.views.health_check import health_check
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'types', TypeView, 'type')
 router.register(r'rocks', RockView, 'rock')
+router.register(r'rock-images', RockImageView, 'rock-image')  
 
 urlpatterns = [
     path('', include(router.urls)),
