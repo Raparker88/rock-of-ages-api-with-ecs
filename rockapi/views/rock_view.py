@@ -49,6 +49,8 @@ class RockView(ViewSet):
         rock.type = chosen_type
         rock.save()
 
+        rock.refresh_from_db()
+
         serialized = RockSerializer(rock, many=False)
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
