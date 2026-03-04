@@ -37,21 +37,24 @@ class RockView(ViewSet):
         Returns:
             Response: JSON serialized representation of newly created rock
         """
+        try:
+            # Get an object instance of a rock type
+            chosen_type = Type.objects.get(pk=request.data['typeId'])
 
-        # Get an object instance of a rock type
-        chosen_type = Type.objects.get(pk=request.data['typeId'])
+            # Create a rock object and assign it property values
+            rock = Rock()
+            rock.user = request.auth.user
+            rock.weight = request.data['weight']
+            rock.name = request.data['name']
+            rock.type = chosen_type
+            rock.save()
 
-        # Create a rock object and assign it property values
-        rock = Rock()
-        rock.user = request.auth.user
-        rock.weight = request.data['weight']
-        rock.name = request.data['name']
-        rock.type = chosen_type
-        rock.save()
+            serialized = RockSerializer(rock, many=False)
 
-        serialized = RockSerializer(rock, many=False)
-
-        return Response(serialized.data, status=status.HTTP_201_CREATED)
+            return Response(serialized.data, status=status.HTTP_201_CREATED)
+    
+        except Exception as ex:
+            return HttpResponseServerError(ex)
 
     def list(self, request):
         """Handle GET requests for all items
