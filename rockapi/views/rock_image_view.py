@@ -199,12 +199,11 @@ class RockImageView(ViewSet):
 
 
 class RockImageSerializer(serializers.ModelSerializer):
-    """
-    JSON serializer for RockImage
-    Converts RockImage model instances to/from JSON
-    """
+    """JSON serializer for RockImage"""
     
     class Meta:
         model = RockImage
-        fields = ('id', 'rock', 'original_url', 'thumbnail_url', 'uploaded_at', 'file_size', 'status')
+        fields = ('id', 'rock', 'original_url', 'thumbnail_small_url', 
+                  'thumbnail_medium_url', 'thumbnail_large_url', 
+                  'uploaded_at', 'file_size', 'status')
         read_only_fields = ('id', 'uploaded_at')

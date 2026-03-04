@@ -12,7 +12,9 @@ class RockImage(models.Model):
     
     # The S3 URL where the thumbnail is stored
     # null=True, blank=True means this can be empty initially (while Lambda is processing)
-    thumbnail_url = models.URLField(max_length=500, null=True, blank=True)
+    thumbnail_small_url = models.URLField(max_length=500, null=True, blank=True)
+    thumbnail_medium_url = models.URLField(max_length=500, null=True, blank=True)
+    thumbnail_large_url = models.URLField(max_length=500, null=True, blank=True)
     
     # Automatically records when the image was uploaded
     uploaded_at = models.DateTimeField(auto_now_add=True)
