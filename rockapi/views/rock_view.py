@@ -49,8 +49,6 @@ class RockView(ViewSet):
         rock.type = chosen_type
         rock.save()
 
-        rock.refresh_from_db()
-
         serialized = RockSerializer(rock, many=False)
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
@@ -100,7 +98,7 @@ class RockSerializer(serializers.ModelSerializer):
     """JSON serializer"""
     type = RockTypeSerializer(many=False)
     user = RockOwnerSerializer(many=False)
-    images = RockImageSerializer(many=True)
+    images = RockImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Rock
