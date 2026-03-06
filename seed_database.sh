@@ -2,9 +2,6 @@
 
 echo "🗄️  Setting up PostgreSQL database..."
 
-echo "📋 Creating app-specific migrations..."
-python3 manage.py makemigrations rockapi
-
 echo "⚙️  Running Django migrations..."
 python3 manage.py migrate
 

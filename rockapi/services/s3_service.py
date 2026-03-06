@@ -19,7 +19,8 @@ class S3Service:
         """
         self.s3_client = boto3.client(
             's3',
-            region_name=settings.AWS_REGION
+            region_name=settings.AWS_REGION,
+            endpoint_url=f"https://s3.{settings.AWS_REGION}.amazonaws.com"
         )
         self.bucket_name = settings.AWS_STORAGE_BUCKET_NAME
 
